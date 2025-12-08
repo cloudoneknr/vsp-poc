@@ -1,11 +1,6 @@
 name: Terraform Apply
 
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'terraform/**' # Trigger on changes to Terraform files
+on: workflow_dispatch
 
 jobs:
   deploy:
@@ -13,11 +8,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.x.x
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
