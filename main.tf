@@ -86,17 +86,3 @@ resource "aws_instance" "web_server" {
     Name = "Terraform-Web-Server"
    }
 }
-
-
-
-
-
-    # resource "aws_instance" "example" {
-    #   ami           = "data.aws_ami.latest_amazon_linux.id" # Replace with a valid AMI ID
-    #   instance_type = "t2.micro"
-    #   user_data     = data.cloudinit_config.example_config.rendered
-
-    #   tags = {
-    #     Name = "MyEC2InstanceWithFile"
-    #   }
-    # }
