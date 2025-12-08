@@ -16,7 +16,7 @@
 
     - name: Create index.html file
       copy:
-        content: "<h1>Hello from Ansible on Amazon Linux!</h1>"
+        content: "<h1>Hello from Terraform-Ansible on Amazon Linux!</h1>"
         dest: /var/www/html/index.html
         owner: apache
         group: apache
