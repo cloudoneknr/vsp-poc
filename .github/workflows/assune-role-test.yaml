@@ -1,0 +1,21 @@
+jobs:
+  main:
+    name: OpenID Connect (OIDC) IAM role
+    runs-on: ubuntu-latest
+    # note: permissions required to fetch OpenID Connect token and allow actions/checkout
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Assume role
+        uses: magnetikonline/action-aws-iam-assume-role@v1
+        with:
+          web-identity-role-arn: arn:aws:iam::600605052115:role/devops
+          aws-region: us-east-1
+          # optional inputs
+          # assume-role-duration-seconds: 6000
+          # assume-role-session-name: GitHubActions
+
+      # IAM role assumed via AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY/AWS_SESSION_TOKEN
+      - name: whoami
+        run: aws sts get-caller-identity
