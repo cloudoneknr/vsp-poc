@@ -1,0 +1,23 @@
+---
+- name: Deploy Apache web page on Amazon Linux EC2
+  hosts: localhost
+  become: true # Use sudo for privileged tasks
+  tasks:
+    - name: Install Apache HTTP server
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start Apache HTTP server
+      service:
+        name: httpd
+        state: started
+        enabled: true # Ensure Apache starts on boot
+
+    - name: Create index.html file
+      copy:
+        content: "<h1>Hello from Ansible on Amazon Linux!</h1>"
+        dest: /var/www/html/index.html
+        owner: apache
+        group: apache
+        mode: '0644'
