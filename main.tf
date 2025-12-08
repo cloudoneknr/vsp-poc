@@ -19,7 +19,7 @@ data "cloudinit_config" "example_config" {
         {
             path        = "/tmp/playbook.yaml"
             permissions = "0644"
-            # owner       = "root:root"
+            owner       = "root:root"
             encoding    = "b64"
             content     = filebase64("./playbook.yaml")
         },
