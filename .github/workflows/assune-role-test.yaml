@@ -1,3 +1,7 @@
+name: Terraform Apply
+
+on: workflow_dispatch
+
 jobs:
   main:
     name: OpenID Connect (OIDC) IAM role
