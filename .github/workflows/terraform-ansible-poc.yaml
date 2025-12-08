@@ -17,18 +17,15 @@ jobs:
           aws-region: us-east-1
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.x.x
+          terraform_version: 1.0.0
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./terraform
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./terraform
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: ./terraform
