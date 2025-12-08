@@ -9,27 +9,27 @@ data "aws_ami" "latest_amazon_linux" {
   }
 }
 data "cloudinit_config" "example_config" {
-    gzip          = false
-    base64_encode = false
+  gzip          = false
+  base64_encode = false
 
-    part {
+  part {
     content_type = "text/cloud-config"
     content = yamlencode({
-        write_files = [
+      write_files = [
         {
-            path        = "/tmp/playbook.yaml"
-            permissions = "0644"
-            owner       = "root:root"
-            encoding    = "b64"
-            content     = filebase64("./playbook.yaml")
+          path        = "/tmp/playbook.yaml"
+          permissions = "0644"
+          owner       = "root:root"
+          encoding    = "b64"
+          content     = filebase64("./playbook.yaml")
         },
-        ]
+      ]
     })
-    }
-    part {
-    filename = "run_playbook.sh"
+  }
+  part {
+    filename     = "run_playbook.sh"
     content_type = "text/x-shellscript"
-    content = <<-EOF
+    content      = <<-EOF
         #!/bin/bash
         yum update -y
         yum yum install -y ansible
@@ -40,7 +40,7 @@ data "cloudinit_config" "example_config" {
         cd /tmp/
         ansible-playbook /tmp/playbook.yaml > "/tmp/playbook.log" 2>&1
     EOF
-    }
+  }
 }
 
 resource "aws_security_group" "web_sg" {
@@ -69,10 +69,10 @@ resource "aws_security_group" "web_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
- tags = {
+  tags = {
     Name = "Web Security Group"
   }
-} 
+}
 
 resource "aws_instance" "web_server" {
   ami           = data.aws_ami.latest_amazon_linux.id
@@ -84,5 +84,5 @@ resource "aws_instance" "web_server" {
 
   tags = {
     Name = "Terraform-Ansible-POC"
-   }
+  }
 }
