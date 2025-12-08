@@ -16,7 +16,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          role-to-assume: arn:aws:iam::600605052115:role/devops
+          # role-to-assume: arn:aws:iam::600605052115:role/devops
           aws-region: us-east-1
           # optional inputs
           # assume-role-duration-seconds: 6000
