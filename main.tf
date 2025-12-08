@@ -8,7 +8,7 @@ data "aws_ami" "latest_amazon_linux" {
     values = ["amzn2-ami-hvm-*-x86_64-gp2"]
   }
 }
-data "cloudinit_config" "example_config" {
+data "cloudinit_config" "webapp_config" {
   gzip          = false
   base64_encode = false
 
@@ -77,7 +77,7 @@ resource "aws_security_group" "web_sg" {
 resource "aws_instance" "web_server" {
   ami           = data.aws_ami.latest_amazon_linux.id
   instance_type = var.instance_type
-  user_data     = data.cloudinit_config.example_config.rendered
+  user_data     = data.cloudinit_config.webapp_config.rendered
 
   # Attach the Security Group
   vpc_security_group_ids = [aws_security_group.web_sg.id]
